@@ -1,17 +1,30 @@
+.section-header{
+  text-decoration:underline
+}
+
+.current-todo {
+  font-size: 25px;
+}
+
+.task-button {
+  border-color: gray;
+  font-weight: bold;
+  float: right;
+  padding: 10px 10px;
+  margin: 5px 5px;
+
+}
 .finish-button {
   background-color : green;
   color : white;
-  font-weight: bold;
 }
 
 .cancel-button {
   background-color : yellow;
   color : black;
-  font-weight: bold;
 }
 
 .delete-button {
   background-color : red;
   color : white;
-  font-weight: bold;
 }

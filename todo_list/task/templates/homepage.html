@@ -14,13 +14,13 @@
 <!-- Add to todo list -->
 <div class="container">
   <div class="row">
-    <h3> Do you want to add something to your to-do list? </h3>
+    <h3 class="section-header"> Do you want to add something to your to-do list? </h3>
 
     <form action="./create/" method="POST"> {% csrf_token %}
       <label for = "task">Task to add:</label>
       <input type = "text" id = "task" name = "task"/>
-      <br />
       <input type="submit" value = "Add task" name="add_task"/>
+      <br />
     </form>
   </div>
 </div>
@@ -31,15 +31,15 @@
 <!-- List of current todo list -->
 <div class="container">
   <div class="row">
-    <h3> Check out what's already in your to-do list: </h3>
+    <h3 class="section-header"> Check out what's already in your to-do list: </h3>
 
     {% for task in task_list %}
       <div class="container">
-        <div class="row">
-          <label>Task {{forloop.counter}} : {{task.text}}</label>
-          <input class = "finish-button" type="submit" value="Finish"/>
-          <input class = "cancel-button" type="submit" value="Cancel"/>
-          <input class = "delete-button" type="submit" value="Delete"/>
+        <div class="row mt-2">
+          <label class="current-todo">Task {{forloop.counter}} : {{task.text}}</label>
+          <input class = "task-button finish-button" type="submit" value="Finish"/>
+          <input class = "task-button cancel-button" type="submit" value="Cancel"/>
+          <input class = "task-button delete-button" type="submit" value="Delete"/>
           <br />
         </div>
       </div>
@@ -50,7 +50,7 @@
 <!-- List of finished tasks -->
 <div class = "container">
   <div class = "row">
-    <h3>Check out your past tasks:</h3>
+    <h3 class="section-header">Check out your past tasks:</h3>
     {% for task in task_list %}
       {% if task.is_finished %}
         <p>
