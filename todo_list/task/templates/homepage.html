@@ -15,11 +15,11 @@
   <div class="row">
     <h3> Do you want to add something to your to-do list? </h3>
 
-    <form action="./create" method="POST"> {% csrf_token %}
+    <form action="./create/" method="POST"> {% csrf_token %}
       <label for = "task">Task to add:</label>
       <input type = "text" id = "task" name = "task"/>
       <br />
-      <input type="submit" value = "Add task" name="add_task" />
+      <input type="submit" value = "Add task" name="add_task"/>
     </form>
   </div>
 </div>
