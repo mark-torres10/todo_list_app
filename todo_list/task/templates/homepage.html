@@ -11,6 +11,7 @@
 <br />
 <br />
 
+<!-- Add to todo list -->
 <div class="container">
   <div class="row">
     <h3> Do you want to add something to your to-do list? </h3>
@@ -27,6 +28,7 @@
 <br />
 <br />
 
+<!-- List of current todo list -->
 <div class="container">
   <div class="row">
     <h3> Check out what's already in your to-do list: </h3>
@@ -34,13 +36,27 @@
     {% for task in task_list %}
       <div class="container">
         <div class="row">
-          <label>Task {{task.id}} : {{task.text}}</label>
-          <input type="submit" value="Finish"/>
-          <input type="submit" value="Cancel"/>
-          <input type="submit" value="Delete"/>
+          <label>Task {{forloop.counter}} : {{task.text}}</label>
+          <input class = "finish-button" type="submit" value="Finish"/>
+          <input class = "cancel-button" type="submit" value="Cancel"/>
+          <input class = "delete-button" type="submit" value="Delete"/>
           <br />
         </div>
       </div>
+    {% endfor %}
+  </div>
+</div>
+
+<!-- List of finished tasks -->
+<div class = "container">
+  <div class = "row">
+    <h3>Check out your past tasks:</h3>
+    {% for task in task_list %}
+      {% if task.is_finished %}
+        <p>
+          Finished : {{task.text}}
+        </p>
+      {% endif %}
     {% endfor %}
   </div>
 </div>

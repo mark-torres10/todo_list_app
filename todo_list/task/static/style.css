@@ -1,0 +1,17 @@
+.finish-button {
+  background-color : green;
+  color : white;
+  font-weight: bold;
+}
+
+.cancel-button {
+  background-color : yellow;
+  color : black;
+  font-weight: bold;
+}
+
+.delete-button {
+  background-color : red;
+  color : white;
+  font-weight: bold;
+}
