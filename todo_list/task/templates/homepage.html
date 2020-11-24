@@ -1,25 +1,43 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2> Welcome to your To-Do App! </h2>
+
+<div class="container">
+  <div class="row">
+    <h2> Welcome to your To-Do App! </h2>
+  </div>
+</div>
+
 <br />
 <br />
 
-<h3> Do you want to add something to your to-do list? </h3>
+<div class="container">
+  <div class="row">
+    <h3> Do you want to add something to your to-do list? </h3>
 
-<form>
-  <label for = "task">Task to add:</label>
-  <input type = "text" id = "task" name = "task"/>
-  <br />
-  <input type="submit" value = "Add task" />
-</form>
+    <form>
+      <label for = "task">Task to add:</label>
+      <input type = "text" id = "task" name = "task"/>
+      <br />
+      <input type="submit" value = "Add task" />
+    </form>
+  </div>
+</div>
 
-<h3> Check out what's already in your to-do list: </h3>
+<br />
+<br />
 
-{% for task in task_list %}
-  <p>
-    Task {{task.id}} : {{task.text}}
-  </p>
-{% endfor %}
+<div class="container">
+  <div class="row">
+    <h3> Check out what's already in your to-do list: </h3>
+
+    {% for task in task_list %}
+      <p>
+        Task {{task.id}} : {{task.text}}
+      </p>
+    {% endfor %}
+  </div>
+</div>
+
 
 {% endblock %}
