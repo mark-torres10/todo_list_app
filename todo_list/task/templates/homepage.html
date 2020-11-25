@@ -36,10 +36,14 @@
     {% for task in task_list %}
       <div class="container">
         <div class="row mt-2">
-          <label class="current-todo">Task {{forloop.counter}} : {{task.text}}</label>
-          <input class = "task-button finish-button" type="submit" value="Finish"/>
-          <input class = "task-button edit-button" type="submit" value="Edit"/>
-          <input class = "task-button delete-button" type="submit" value="Delete"/>
+          <form action="./modify/", method="POST"> {% csrf_token %}
+            <!-- Finish, edit, or delete tasks. Post to views for processing -->
+            <label class="current-todo">Task {{forloop.counter}} : {{task.text}}</label>
+            <input type="hidden" name="task-id" value="{{task.id}}"></input>
+            <button type="submit" class="task-button finish-button" name="change_type" value="finish">Finish</button>
+            <button type="submit" class="task-button edit-button" name="change_type" value="edit">Edit</button>
+            <button type="submit" class="task-button delete-button" name="change_type" value="delete">Delete</button>
+          </form>
           <br />
         </div>
       </div>

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .models import Task
 from .forms import TaskForm
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.urls import reverse
 
 app_name = "task"
@@ -40,21 +40,30 @@ def add_task_view(request):
     # redirect to main page
     return HttpResponseRedirect(reverse("task:homepage"))
 
-def finished_task_view(request):
+def modify_task_view(request):
     """
-    Mark a task as finished in the DB
+    Modify an existing task (mark as finished, delete it, or edit it)
     """
-    #return render(request)
-    pass
 
-def edit_task_view(request):
-    """
-    Edit the text of a task
-    """
-    pass
+    if request.POST:
+        type_of_change = request.POST['change_type']
+        task_id = request.POST["task-id"]
 
-def delete_task_view(request):
-    """
-    Mark a task as deleted
-    """
-    pass
+    print(f"The task id we want to manipulate is: {task_id} and the type of change is: {type_of_change}")
+    print(request.POST)
+
+    try:
+        task = Task.objects.get(pk=task_id)
+    except Task.DoesNotExist:
+        raise Http404("Task doesn't exist.")
+
+    if type_of_change == "finish":
+        updateForm=TaskForm(instance=item)
+    elif type_of_change == "edit":
+        pass
+    elif type_of_change == "delete":
+        Task.objects.filter(id=task_id).delete()
+        return HttpResponseRedirect(reverse("task:homepage"))
+
+
+    return HttpResponse("Finished editing!")
