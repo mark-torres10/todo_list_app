@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from .models import Task
 from .forms import TaskForm
+from django.http import HttpResponse, HttpResponseRedirect
+from django.urls import reverse
 
 app_name = "task"
 
@@ -19,35 +21,35 @@ def homepage_view(request):
 
 def add_task_view(request):
     """
-    Add a new task
+    Add a new task to DB
     """
-    form = TaskForm(request.POST or None)
-    if form.is_valid():
-        form.save()
-        form = TaskForm()
+    
+    # read POST request from homepage
+    if request.POST:
+        task_to_add = request.POST["task"]
 
-    context = {
-        'form' : form
-    }
+    # get date
 
-    #return render(request, "create_entry.html", context)
-    #return an HTTP request instead: https://docs.djangoproject.com/en/3.1/ref/request-response/
-    # keeps you on the page that you're on, since it's just an HTTP request to do CRUD
-    # serializers turn db --> json, render to site
-    # 1) return HTTP request, not view
-    # 2)
-    # use VSCode
+    # add to database
+    task = Task(text = task_to_add, 
+                is_finished = False)
+
+    # save to DB
+    task.save()
+
+    # redirect to main page
+    return HttpResponseRedirect(reverse("task:homepage"))
 
 def finished_task_view(request):
     """
-    Mark a task as finished
+    Mark a task as finished in the DB
     """
     #return render(request)
     pass
 
-def cancelled_task_view(request):
+def edit_task_view(request):
     """
-    Mark a task as cancelled
+    Edit the text of a task
     """
     pass
 
