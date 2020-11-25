@@ -30,9 +30,13 @@ def add_task_view(request):
         'form' : form
     }
 
-    return render(request, "create_entry.html", context)
-
-
+    #return render(request, "create_entry.html", context)
+    #return an HTTP request instead: https://docs.djangoproject.com/en/3.1/ref/request-response/
+    # keeps you on the page that you're on, since it's just an HTTP request to do CRUD
+    # serializers turn db --> json, render to site
+    # 1) return HTTP request, not view
+    # 2)
+    # use VSCode
 
 def finished_task_view(request):
     """

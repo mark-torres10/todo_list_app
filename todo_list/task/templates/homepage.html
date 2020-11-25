@@ -54,7 +54,7 @@
     {% for task in task_list %}
       {% if task.is_finished %}
         <p>
-          Finished : {{task.text}}
+          {{task.text}}: Finished
         </p>
       {% endif %}
     {% endfor %}
