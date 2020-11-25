@@ -4,7 +4,7 @@
 
 <div class="container">
   <div class="row">
-    <h2> Welcome to your To-Do App! </h2>
+    <h2 class="title"> Welcome to your To-Do App! </h2>
   </div>
 </div>
 
@@ -31,22 +31,22 @@
 <!-- List of current todo list -->
 <div class="container">
   <div class="row">
-    <h3 class="section-header"> Check out what's already in your to-do list: </h3>
+    <h3 class="section-header"> Check out what's already on your to-do list: </h3>
 
-    {% for task in task_list %}
-      <div class="container">
-        <div class="row mt-2">
-          <form action="./modify/", method="POST"> {% csrf_token %}
-            <!-- Finish, edit, or delete tasks. Post to views for processing -->
-            <label class="current-todo">Task {{forloop.counter}} : {{task.text}}</label>
-            <input type="hidden" name="task-id" value="{{task.id}}"></input>
-            <button type="submit" class="task-button finish-button" name="change_type" value="finish">Finish</button>
-            <button type="submit" class="task-button edit-button" name="change_type" value="edit">Edit</button>
-            <button type="submit" class="task-button delete-button" name="change_type" value="delete">Delete</button>
-          </form>
-          <br />
+    {% for task in unfinished_tasks %}
+        <div class="container box">
+          <div class="row mt-2">
+            <form action="./modify/", method="POST"> {% csrf_token %}
+              <!-- Finish, edit, or delete tasks. Post to views for processing -->
+              <label class="task-entry" contenteditable="true">Task {{forloop.counter}}: {{task.text}}</label>
+              <input type="hidden" name="task-id" value="{{task.id}}"></input>
+              <button type="submit" class="task-button finish-button" name="change_type" value="finish">Finish</button>
+              <button type="submit" class="task-button edit-button" name="change_type" value="edit">Edit</button>
+              <button type="submit" class="task-button delete-button" name="change_type" value="delete">Delete</button>
+            </form>
+            <br />
+          </div>
         </div>
-      </div>
     {% endfor %}
   </div>
 </div>
@@ -54,16 +54,26 @@
 <!-- List of finished tasks -->
 <div class = "container">
   <div class = "row">
-    <h3 class="section-header">Check out your past tasks:</h3>
-    {% for task in task_list %}
-      {% if task.is_finished %}
-        <p>
-          {{task.text}}: Finished
-        </p>
-      {% endif %}
+    <h3 class="section-header">Check out what you've been able to finish!</h3>
+    {% for task in finished_tasks %}
+    <div class = "container box">
+      <span>
+        &#10003;
+        <label class="task-entry">Task {{forloop.counter}}: {{task.text}}</label>
+      </span>
+      <!--
+      <button type="submit" class="task-button" name="change_type" value="unfinish">Not actually finished? Put back on the to-do list!</button>
+      -->
+      <br />
+    </div>
     {% endfor %}
   </div>
 </div>
 
+<div>
+  <br />
+  <br />
+  <br />
+</div>
 
 {% endblock %}

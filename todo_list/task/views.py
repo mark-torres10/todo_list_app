@@ -13,8 +13,17 @@ def homepage_view(request):
     """
     # get all tasks
     queryset = Task.objects.all()
+
+    # get finished tasks
+    finished_tasks = filter(lambda x: x.is_finished is True, queryset)
+
+    # get unfinished tasks
+    unfinished_tasks = filter(lambda x: x.is_finished is False, queryset)
+    
     context = {
-        'task_list' : queryset
+        'task_list' : queryset, 
+        'unfinished_tasks' : unfinished_tasks,
+        'finished_tasks' : finished_tasks
     }
 
     return render(request, "homepage.html", context)
@@ -58,9 +67,18 @@ def modify_task_view(request):
         raise Http404("Task doesn't exist.")
 
     if type_of_change == "finish":
-        updateForm=TaskForm(instance=item)
+        task.is_finished = True
+        task.save()
+        return HttpResponseRedirect(reverse("task:homepage"))
+
+    elif type_of_change == "unfinish":
+        task.is_finished = False
+        task.save()
+        return HttpResponseRedirect(reverse("task:homepage"))
+
     elif type_of_change == "edit":
         pass
+
     elif type_of_change == "delete":
         Task.objects.filter(id=task_id).delete()
         return HttpResponseRedirect(reverse("task:homepage"))

@@ -1,9 +1,20 @@
-.section-header{
-  text-decoration:underline
+.title {
+  text-align: center; 
 }
 
-.current-todo {
+.section-header{
+  text-decoration:underline;
+}
+
+.task-entry {
+  margin: 10px 5px; 
   font-size: 25px;
+}
+
+.box:hover {
+  background-color: green; 
+  border-color: gray; 
+  border-width: 10px; 
 }
 
 .task-button {
@@ -12,6 +23,7 @@
   float: right;
   padding: 10px 10px;
   margin: 5px 5px;
+
 
 }
 .finish-button {
@@ -26,5 +38,10 @@
 
 .delete-button {
   background-color : red;
+  color : white;
+}
+
+.unfinish-button {
+  background-color : green;
   color : white;
 }
