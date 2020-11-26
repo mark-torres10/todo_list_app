@@ -1,4 +1,5 @@
 # To-Do List App
-Basic implementation of To-Do list app, developed in Django
+
+This is a basic implementation of a To-Do list app, developed largely using Django
 
 ![Demonstration of To-Do List app](media/app-demo-2020-11-25.gif)
