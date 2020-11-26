@@ -9,14 +9,13 @@
 </div>
 
 <br />
-<br />
 
 <!-- Add to todo list -->
 <div class="container">
   <div class="row">
     <h3 class="section-header"> Do you want to add something to your to-do list? </h3>
-
-    <form action="./create/" method="POST"> {% csrf_token %}
+    <br/>
+    <form class="add-to-list" action="./create/" method="POST"> {% csrf_token %}
       <label for = "task">Task to add:</label>
       <input type = "text" id = "task" name = "task"/>
       <input type="submit" value = "Add task" name="add_task"/>
@@ -30,15 +29,15 @@
 
 <!-- List of current todo list -->
 <div class="container">
-  <div class="row">
-    <h3 class="section-header"> Check out what's already on your to-do list: </h3>
+  <h3 class="section-header"> Check out what's already on your to-do list: </h3>
+  <div class="row list-section">
 
     {% for task in unfinished_tasks %}
         <div class="container box">
           <div class="row mt-2">
             <form action="./modify/", method="POST"> {% csrf_token %}
               <!-- Finish, edit, or delete tasks. Post to views for processing -->
-              <label class="task-entry" contenteditable="true">Task {{forloop.counter}}: {{task.text}}</label>
+              <label class="task-entry" contenteditable="true">{{task.text}}</label>
               <input type="hidden" name="task-id" value="{{task.id}}"></input>
               <button type="submit" class="task-button finish-button" name="change_type" value="finish">Finish</button>
               <button type="submit" class="task-button edit-button" name="change_type" value="edit">Edit</button>
@@ -51,15 +50,18 @@
   </div>
 </div>
 
+<br/>
+<br/>
+
 <!-- List of finished tasks -->
 <div class = "container">
-  <div class = "row">
-    <h3 class="section-header">Check out what you've been able to finish!</h3>
+  <h3 class="section-header">Check out what you've been able to finish!</h3>
+  <div class = "row list-section">
     {% for task in finished_tasks %}
     <div class = "container box">
       <span>
         &#10003;
-        <label class="task-entry">Task {{forloop.counter}}: {{task.text}}</label>
+        <label class="task-entry">{{task.text}}</label>
       </span>
       <!--
       <button type="submit" class="task-button" name="change_type" value="unfinish">Not actually finished? Put back on the to-do list!</button>

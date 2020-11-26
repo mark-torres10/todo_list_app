@@ -1,9 +1,23 @@
 .title {
   text-align: center; 
+  font-size: 50px; 
+  color: rgb(100, 100, 253); 
+  font-weight: bold; 
 }
 
 .section-header{
-  text-decoration:underline;
+  /*text-decoration:underline;*/
+  text-align: center; 
+  color: rgb(165, 136, 245); 
+}
+
+.list-section {
+  background-color: rgb(207, 207, 207); 
+  border-radius: 25px; 
+}
+
+.add-to-list {
+  text-align: center; 
 }
 
 .task-entry {
@@ -12,9 +26,12 @@
 }
 
 .box:hover {
-  background-color: green; 
-  border-color: gray; 
+  background-color: rgb(235, 235, 235); 
+  border-color: black; 
   border-width: 10px; 
+  border-radius: 25px; 
+  padding: 15px; 
+  opacity: 80%; 
 }
 
 .task-button {
@@ -22,10 +39,10 @@
   font-weight: bold;
   float: right;
   padding: 10px 10px;
-  margin: 5px 5px;
-
-
+  margin: 10px 10px;
+  border-radius: 10px; 
 }
+
 .finish-button {
   background-color : green;
   color : white;
