@@ -16,9 +16,9 @@
     <h3 class="section-header"> Do you want to add something to your to-do list? </h3>
     <br/>
     <form class="add-to-list" action="./create/" method="POST"> {% csrf_token %}
-      <label for = "task">Task to add:</label>
+      <label for = "task">Task to add: </label>
       <input type = "text" id = "task" name = "task"/>
-      <input type="submit" value = "Add task" name="add_task"/>
+      <input type="submit" class = "add-task-button" value = "Add task" name="add_task"/>
       <br />
     </form>
   </div>
