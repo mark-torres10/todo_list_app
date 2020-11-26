@@ -54,9 +54,12 @@ def modify_task_view(request):
     Modify an existing task (mark as finished, delete it, or edit it)
     """
 
+    print("The POST request is: ")
+    print(request.POST)
+
     if request.POST:
-        type_of_change = request.POST['change_type']
-        task_id = request.POST["task-id"]
+        type_of_change = request.POST.get("change_type")
+        task_id = request.POST.get("task-id")
 
     print(f"The task id we want to manipulate is: {task_id} and the type of change is: {type_of_change}")
     print(request.POST)
@@ -71,13 +74,10 @@ def modify_task_view(request):
         task.save()
         return HttpResponseRedirect(reverse("task:homepage"))
 
-    elif type_of_change == "unfinish":
+    elif type_of_change == "return_to_list":
         task.is_finished = False
         task.save()
         return HttpResponseRedirect(reverse("task:homepage"))
-
-    elif type_of_change == "edit":
-        pass
 
     elif type_of_change == "delete":
         Task.objects.filter(id=task_id).delete()

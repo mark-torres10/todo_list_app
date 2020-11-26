@@ -37,11 +37,10 @@
           <div class="row mt-2">
             <form action="./modify/", method="POST"> {% csrf_token %}
               <!-- Finish, edit, or delete tasks. Post to views for processing -->
+              <button type="submit" class="task-button finish-button" name="change_type" value="finish">Finish</button>
+              <button type="submit" class="task-button delete-button" name="change_type" value="delete">Delete</button>
               <label class="task-entry" contenteditable="true">{{task.text}}</label>
               <input type="hidden" name="task-id" value="{{task.id}}"></input>
-              <button type="submit" class="task-button finish-button" name="change_type" value="finish">Finish</button>
-              <button type="submit" class="task-button edit-button" name="change_type" value="edit">Edit</button>
-              <button type="submit" class="task-button delete-button" name="change_type" value="delete">Delete</button>
             </form>
             <br />
           </div>
@@ -59,14 +58,15 @@
   <div class = "row list-section">
     {% for task in finished_tasks %}
     <div class = "container box">
-      <span>
-        &#10003;
-        <label class="task-entry">{{task.text}}</label>
-      </span>
-      <!--
-      <button type="submit" class="task-button" name="change_type" value="unfinish">Not actually finished? Put back on the to-do list!</button>
-      -->
-      <br />
+      <form action="./modify/", method="POST"> {% csrf_token %}
+        <span>
+          <input type="hidden" name="task-id" value="{{task.id}}"></input>
+          <button type="submit" class="task-button return-to-list-button" name="change_type" value="return_to_list">Add back to list!</button>
+          <label class="task-entry">{{task.text}}</label>
+          &#10003; 
+        </span>
+        <br />
+      </form>
     </div>
     {% endfor %}
   </div>

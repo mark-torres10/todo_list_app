@@ -37,24 +37,24 @@
 .task-button {
   border-color: gray;
   font-weight: bold;
-  float: right;
+  float: left;
   padding: 10px 10px;
   margin: 10px 10px;
   border-radius: 10px; 
 }
 
 .finish-button {
-  background-color : green;
-  color : white;
+  background-color : rgb(170, 255, 170);
+  color : rgb(120, 78, 238); 
 }
 
-.edit-button {
-  background-color : yellow;
-  color : black;
+.return-to-list-button {
+  background-color : white;
+  color :  rgb(120, 78, 238); 
 }
 
 .delete-button {
-  background-color : red;
+  background-color : rgb(255, 34, 34);
   color : white;
 }
 
